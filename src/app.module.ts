@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { StockModule } from './stock/stock.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './stock/infrastructure/database.module';
-import { StockService } from './stock/core/services/stock/stock.service';
 import * as Joi from '@hapi/joi';
 
 @Module({
@@ -20,6 +19,6 @@ import * as Joi from '@hapi/joi';
     }),
     DatabaseModule,
   ],
-  providers: [StockService],
+  providers: [],
 })
 export class AppModule {}
