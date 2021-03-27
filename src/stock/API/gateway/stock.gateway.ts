@@ -58,6 +58,8 @@ export class StonkGateway implements OnGatewayConnection {
     @ConnectedSocket() socket: Socket,
   ): Promise<void> {
     try {
+      const newStonk = await this.stonkService.addStonk(stonk);
+      this.server.emit('newStonk', newStonk);
     } catch (e) {
       socket.error(e.message);
     }
@@ -69,6 +71,8 @@ export class StonkGateway implements OnGatewayConnection {
     @ConnectedSocket() socket: Socket,
   ): Promise<void> {
     try {
+      await this.stonkService.deleteStonk(stonk);
+      this.server.emit('deletedStonk', await this.stonkService.getStonks());
     } catch (e) {
       socket.error(e.message);
     }
